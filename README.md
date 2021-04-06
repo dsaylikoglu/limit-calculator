@@ -1,2 +1,2 @@
-# limit_calculator
+# Limit Calculator
 This a Windows application that allows you to calculate normal limits, from the + and the - direction.
