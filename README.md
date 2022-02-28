@@ -1,2 +1,2 @@
 # Limit Calculator
-This a Windows application that allows you to calculate normal limits, from the + and the - direction.
+This a Windows application made with Python's Tkinter library. Limit Calculator allows you to calculate normal limits and one-sided limits.
