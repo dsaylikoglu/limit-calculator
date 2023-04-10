@@ -1,10 +1,16 @@
 from sympy import *
 from tkinter import *
+import tkinter.font as font
 
 root = Tk()
 root.title("Limit Calculator")
 root.iconbitmap("math.png")
-root.geometry("500x350")
+root.geometry("500x420")
+
+
+#define font
+myFont = font.Font(family='Helvetica', size=18, weight='bold')
+
 
 def instruction():
 	instr = Toplevel()
@@ -22,31 +28,35 @@ def instruction():
 	instr8_label = Label(instr, text="For decimal notation, use '.'").pack()
 
 instr_btn = Button(root, text="Instructions", command=instruction, fg="blue")
-instr_btn.grid(row=0, column=0, pady=8)
+instr_btn.grid(row=0, column=0, pady=(20, 10))
 
 lbl = Label(root, text="To calculate the limit, enter your function correctly!", fg="red")
 lbl.grid(row=1, column=0, pady=10)
 e = Entry(root, width=50)
-e.grid(row=2, column=0, padx=100)
+e.grid(row=2, column=0, padx=100, pady=(0, 10))
 
 lbl1 = Label(root, text="Variable:", fg="red")
 lbl1.grid(row=3,column=0, pady=5)
 e1 = Entry(root, width=20)
-e1.grid(row=4, column=0,padx=8)
+e1.grid(row=4, column=0, padx=8, pady=(0, 10))
 
 lbl2 = Label(root, text="The approaching number:", fg="red")
 lbl2.grid(row=5,column=0, pady=5)
 e2 = Entry(root, width=20)
-e2.grid(row=6,column=0,padx=8)
+e2.grid(row=6, column=0, padx=5, pady=(0, 15))
 
 def lim():
 	func = e.get()
 	var = e1.get()
 	if e2.get() == "oo":
 		appr_num = oo
-	appr_num = float(e2.get())
+	else:
+		appr_num = float(e2.get())
 
 	var = symbols(var)
+	if appr_num == oo:
+		ans1 = limit(func, var, appr_num)
+		ans2 = limit(func, var, appr_num)
 	ans1 = limit(func, var, appr_num, dir="-")
 	ans2 = limit(func, var, appr_num, dir="+")
 
@@ -54,10 +64,14 @@ def lim():
 		slave.grid_forget()
 
 	if ans1==ans2:
-		ans_lbl = Label(root, text=str(ans1))
+		ans_lbl = Label(root, text=str(ans1), relief=GROOVE, borderwidth=4)
+		if ans1 == oo:
+			ans_lbl = Label(root, text="∞", relief=GROOVE, borderwidth=4)
+		ans_lbl['font'] = myFont
 		ans_lbl.grid(row=10, column=0, pady=10)
 	else:
-		ans_lbl = Label(root, text="The limit doesn't exist.")
+		ans_lbl = Label(root, text="The limit doesn't exist.", relief=GROOVE, borderwidth=4)
+		ans_lbl['font'] = myFont
 		anslbl.grid(row=10, column=0, pady=10)
 
 def lim_from_right():
@@ -73,7 +87,7 @@ def lim_from_right():
 	for slave in root.grid_slaves(row=10, column=0):
 		slave.grid_forget()
 
-	ans_lbl = Label(root, text=str(ans))
+	ans_lbl = Label(root, text=str(ans), relief=GROOVE, borderwidth=4)
 	ans_lbl.grid(row=10, column=0, pady=5)
 
 def lim_from_left():
@@ -88,8 +102,8 @@ def lim_from_left():
 
 	for slave in root.grid_slaves(row=10, column=0):
 		slave.grid_forget()
-		
-	ans_lbl = Label(root, text=str(ans))
+
+	ans_lbl = Label(root, text=str(ans), relief=GROOVE, borderwidth=4)
 	ans_lbl.grid(row=10, column=0, pady=5)
 
 lim_calc = Button(root, text="Calculate the Limit", command=lim, fg="blue")
