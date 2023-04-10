@@ -3,7 +3,7 @@ from tkinter import *
 
 root = Tk()
 root.title("Limit Calculator")
-root.iconbitmap("C:/Users/lenovo/Desktop/Matematik/hesap için kodlar/exe/lim.ico")
+root.iconbitmap("math.png")
 root.geometry("500x325")
 
 def instruction():
