@@ -4,5 +4,5 @@ This a Windows application made with Python's Tkinter and Sympy libraries. Limit
 <!-- ![Math](/math.png "Math") -->
 
 <center>
-	<img src="./math.png" alt="Math" width="60%" height="60%" style="display: block; margin: 0 auto">
+	<img src="./math.png" alt="Math" width="60%" height="60%">
 </center>
